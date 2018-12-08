@@ -1,0 +1,56 @@
+#include "../src/stringGen.h"
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+
+#test populateBlockOf100Strings
+    char** strArr = calloc(sizeof(char*),100);
+    memset(strArr,NULL,(sizeof(char*)*100));
+
+    struct stringGenArgs* stringGenThreadArgs= NULL;
+    stringGenThreadArgs = malloc(sizeof(struct stringGenArgs));
+
+    ck_assert(stringGenThreadArgs!=NULL);
+    stringGenThreadArgs->arr=strArr;
+    stringGenThreadArgs->stringBlockSize=100;
+    stringGenThreadArgs->workerThreadCount=1;
+    stringGenThreadArgs->hashFound=malloc(sizeof(bool));
+
+    pthread_t stringGenThread;
+    pthread_create(&stringGenThread,NULL,stringGen,stringGenThreadArgs);
+    printf("String generation thread spawned.\n");
+
+    sleep(1);
+
+    for (int i=0;i<100;i++){
+        ck_assert(strArr[i]!=NULL);
+        ck_assert(strlen(strArr[i])!=0);
+    }
+
+
+#test populateBlockOf400Strings
+    char** strArr = calloc(sizeof(char*),400);
+    memset(strArr,NULL,(sizeof(char*)*400));
+
+    struct stringGenArgs* stringGenThreadArgs= NULL;
+    stringGenThreadArgs = malloc(sizeof(struct stringGenArgs));
+
+    ck_assert(stringGenThreadArgs!=NULL);
+    stringGenThreadArgs->arr=strArr;
+    stringGenThreadArgs->stringBlockSize=100;
+    stringGenThreadArgs->workerThreadCount=4;
+    stringGenThreadArgs->hashFound=malloc(sizeof(bool));
+
+    pthread_t stringGenThread;
+    pthread_create(&stringGenThread,NULL,stringGen,stringGenThreadArgs);
+    printf("String generation thread spawned.\n");
+
+    sleep(1);
+
+    for (int i=0;i<400;i++){
+        ck_assert(strArr[i]!=NULL);
+        ck_assert(strlen(strArr[i])!=0);
+    }
+
