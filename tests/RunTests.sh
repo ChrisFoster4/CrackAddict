@@ -7,8 +7,9 @@ fi
 echo "Building tests"
 if [ $1 == "all" ]
 then
-    echo "Running following check files $allCheckFiles"
-    checkmk <(cat $(find * -name "*.check")) > tests.c || (echo "Failed to build tests" && exit 1)
+     allCheckFiles=$(find . -name "*.check" -type f -printf "%p ")
+     echo "Running following check files $allCheckFiles"
+     checkmk $allCheckFiles  > tests.c || (echo "Failed to build tests" && rm allCheck.check && exit 1)
 else
     checkmk $1 > tests.c || (echo "Failed to build tests" && exit 1)
 fi
