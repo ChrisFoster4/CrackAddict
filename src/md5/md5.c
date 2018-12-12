@@ -5,21 +5,29 @@
 
 
 char* md5String(char *toHash, char *returnAddress) {
+    if (*toHash == NULL){
+        printf("NULL passed to md5String.Exiting\n");
+        exit(1);
+    }
     int initial_toHashLen = strlen(toHash);
-    char* initial_toHash = malloc(sizeof(char)*(strlen(toHash)));
+    char* initial_toHash = NULL;
+    if (!(initial_toHash = malloc(sizeof(char)*(initial_toHashLen+1)))){
+        printf("Failed to allocate memory in md5String\n");
+        exit(1);
+    }
+
     strcpy(initial_toHash,toHash);
 
-    assert(!strcmp(toHash,initial_toHash));
 
-    uint32_t s[64] = { 7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22,
-                       7, 12, 17, 22, 5,  9, 14, 20,  5,  9, 14, 20,
-                       5,  9, 14, 20,  5,  9, 14, 20 ,4, 11, 16, 23,
-                       4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23,
-                       6, 10, 15, 21,  6, 10, 15, 21,  6, 10, 15, 21,
+    uint32_t s[64] = { 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
+                       7, 12, 17, 22, 5,  9, 14, 20, 5,  9, 14, 20,
+                       5,  9, 14, 20, 5,  9, 14, 20, 4, 11, 16, 23,
+                       4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
+                       6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21,
                        6, 10, 15, 21 };
 
     uint32_t K[64] =
-            { 0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee
+            {         0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee
                     , 0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501
                     , 0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be
                     , 0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821
@@ -54,7 +62,13 @@ char* md5String(char *toHash, char *returnAddress) {
     //TODO this calculation could be included in the above calculations
 
 
-    toHash = calloc(newLength + 64, 1); //Allocating area of memory as 0's. This saves appending zeroes as we overlay toHash onto the 0'd area of memory
+    //Allocating area of memory as 0's. This saves appending zeroes as we overlay toHash onto the 0'd area of memory
+    toHash = NULL;
+    if (!(toHash = calloc(newLength + 64, 1))){
+        printf("Failed to allocate memory in md5String\n");
+        exit(1);
+    }
+
     /*
     TODO
     append 0's not underlay them.
@@ -63,7 +77,7 @@ char* md5String(char *toHash, char *returnAddress) {
     */
 
     memcpy(toHash, initial_toHash, initial_toHashLen);
-    toHash[initial_toHashLen] = 128;//Append a single bit which is 1 to the string
+    toHash[initial_toHashLen] =  128;//Append a single bit which is 1 to the string
 
     uint32_t initialBitLength = initial_toHashLen * 8;
     memcpy(toHash + newLength, &initialBitLength, sizeof(uint32_t)); //Copy the length of the original hash in bits to the end of the hash
@@ -123,6 +137,8 @@ char* md5String(char *toHash, char *returnAddress) {
             ,d0ptr[0],d0ptr[1],d0ptr[2],d0ptr[3]
     );
 
+    free(toHash);
+    free(initial_toHash);
 
     if (returnAddress[0] != '\0'){
         return returnAddress;
@@ -131,9 +147,3 @@ char* md5String(char *toHash, char *returnAddress) {
         exit(1);
     }
 }
-
-
-
-
-
-
