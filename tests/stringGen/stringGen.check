@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 #include "../src/StringGeneration/stringGen.h"
 #include "../src/md5/md5.h"
-=======
 #include "../src/stringGen.h"
->>>>>>> 1ec9ba67ab657a16dd544317a728118c083ba281
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -55,10 +52,7 @@
     sleep(1);
 
     for (int i=0;i<400;i++){
-<<<<<<< HEAD
         printf("%s%d%s%s\n","strArr[",i,"]=",strArr[i]);
-=======
->>>>>>> 1ec9ba67ab657a16dd544317a728118c083ba281
         ck_assert(strArr[i]!=NULL);
         ck_assert(strlen(strArr[i])!=0);
     }
