@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include "md5/md5.h"
+#include "../md5/md5.h"
 
 typedef struct workerThreadArgs{
     int* id;

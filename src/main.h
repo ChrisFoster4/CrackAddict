@@ -13,8 +13,9 @@
 #include "StringGeneration/stringGen.h"
 #include "md5/md5.h"
 #include "Utility/getCpuInfo.h"
-#include "workerThread.h"
+#include "WorkerThread/workerThread.h"
 
 #include "Utility/getCpuInfo.h"
+#include "Dictionary/FileParsing.h"
 
 #endif //MD5_MAIN_H

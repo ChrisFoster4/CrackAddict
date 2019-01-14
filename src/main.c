@@ -5,21 +5,27 @@
 #include "main.h"
 
 int main(int argc,char** argv){
-//    for (int i=0;i<argc;i++)
-//    {
-//        printf(argv[i]);
-//        puts("");
-//    }
+    printf("CrackAddict\n");
+
     //TODO handle args
 
-    int stringBlockSize = 100;
-
-//    char hashToFind[33];
-    char* hashToFind = NULL;
+    char* hashToFind;
     if (!(hashToFind = malloc(sizeof(char)*33))){
         printf("Malloc failed. hashToFind\n");
         exit(1);
     }
+
+    strcpy(hashToFind,"acbd18db4cc2f85cedef654fccc4a4d8");
+    printf("%s%s\n","Looking for ",hashToFind);
+
+
+    bool hashFound=false;
+
+    parseDictionary("src/Dictionary/md5Dict.txt", hashToFind,&hashFound);
+
+
+    int stringBlockSize = 100;
+
 
     md5String("olaaa",hashToFind);
     printf("%s%s\n","Looking for ",hashToFind);
@@ -27,29 +33,12 @@ int main(int argc,char** argv){
     //Use all threads on the cpu apart from the one thread for the string generation
     unsigned int workerThreadCount =(unsigned int) (getThreadCount())-1;
     unsigned int arrSize = stringBlockSize * workerThreadCount;
-    bool hashFound = false;
 
 
     //Array to store pointers to string which will be hashed
     char** strArr = calloc(sizeof(char*),arrSize);
     memset(strArr,NULL,(sizeof(char*)*arrSize));
     printf("%s%u%s%u%s\n","Creating an array of ",arrSize," as you have ",(workerThreadCount+1), " thread(s) on your CPU");
-    if (strArr[0]!= NULL){
-            printf("strArr[0] !=NULL");
-        exit(1);
-    }
-    if (strArr[100]!= NULL){
-        printf("strArr[0] !=NULL");
-        exit(1);
-    }
-    if (strArr[200]!= NULL){
-        printf("strArr[0] !=NULL");
-        exit(1);
-    }
-    if (strArr[199]!= NULL){
-        printf("strArr[0] !=NULL");
-        exit(1);
-    }
 
 
     //Spawning thread to populate the array of strings to hash
