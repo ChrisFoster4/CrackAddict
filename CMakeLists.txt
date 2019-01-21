@@ -12,4 +12,5 @@ add_executable(
         src/md5/md5.c src/md5/md5.h
         src/Dictionary/FileParsing.c src/Dictionary/FileParsing.h
        	src/md5/breakMd5Hash.c src/md5/breakMd5Hash.h
+		src/OptionsHandling/OptionsHandling.c src/OptionsHandling/OptionsHandling.h
 	)
