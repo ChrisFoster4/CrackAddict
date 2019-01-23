@@ -10,12 +10,14 @@
 #include <memory.h>
 #include <stdbool.h>
 
-void parseDictionary(char *filePath, char *hashToFind, bool *hashFound);
+#include "../OptionsHandling/OptionsHandling.h"
 
-typedef struct wordInfo {
+char* parseDictionary(struct user_options* options,bool* hashFound);
+
+struct wordInfo {
     char* word;
-    int length;
+    size_t length;
 };
-struct wordInfo* extractWord(char* line,int* len);
+struct wordInfo* extractWord(char* line,size_t* len);
 #endif //MD5_FILEPARSING_H
 

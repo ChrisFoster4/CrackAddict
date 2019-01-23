@@ -14,7 +14,7 @@
 
 #include "breakMd5Hash.h"
 
-char* breakMd5Hash(char* hashToCrack,struct breakHashArgs* args){
+char* breakMd5Hash(char* hashToCrack,struct user_options* args){
         printf("%s%s\n", "Looking for ", hashToCrack);
         bool hashFound = false;
 
@@ -25,7 +25,7 @@ char* breakMd5Hash(char* hashToCrack,struct breakHashArgs* args){
 
         //Array to store pointers to string which will be hashed
         char **strArr = calloc(sizeof(char *), arrSize);
-        memset(strArr, NULL, (sizeof(char *) * arrSize));
+        memset(strArr,(size_t) NULL, (sizeof(char *) * arrSize));
         printf("%s%u%s%u%s\n", "Creating an array of ", arrSize,
                " as you have ", (workerThreadCount + 1),
                " thread(s) on your CPU");
@@ -55,14 +55,19 @@ char* breakMd5Hash(char* hashToCrack,struct breakHashArgs* args){
 
         printf("%s%u%s\n", "Creating ", workerThreadCount,
                " worker threads.");
+        //Pointer for the word once it has been cracked. Can't return from worker threads
+        char* crackedWord=NULL;
+
         for (unsigned int i = 0; i < workerThreadCount; i++) {
                 ptr[i] = malloc(sizeof(struct workerThreadArgs));
                 if (ptr[i]==NULL){
                         printf ("Failed to allocated space for workerThreadArgs\n");
                         exit(1);
                 }
+                ptr[i]->returnLocation=crackedWord;
                 ptr[i]->strArr = strArr;
                 ptr[i]->stringBlockSize = args->stringBlockSize;
+
                 int *x = malloc(sizeof(int));
                 *x = i;
                 ptr[i]->id = x;
@@ -85,5 +90,6 @@ char* breakMd5Hash(char* hashToCrack,struct breakHashArgs* args){
 
         //Doesn't frees the space for the pointers not what they point to
         free(strArr);
+        return crackedWord;
 }
 

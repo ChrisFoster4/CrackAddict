@@ -12,14 +12,15 @@
 #include <stdlib.h>
 #include <math.h>
 #include <assert.h>
+#include <stdint.h>
 
 typedef struct stringGenArgs {
-    char** arr;
-    unsigned int workerThreadCount;
-    int stringBlockSize;
-    bool* hashFound;
+	char **arr;
+	unsigned int workerThreadCount;
+	size_t stringBlockSize;
+	bool *hashFound;
 } stringGenArgs;
 
-void stringGen(struct stringGenArgs* options);
+void stringGen(struct stringGenArgs *options);
 
-#endif //MD5_PERMUTE_H
+#endif				//MD5_PERMUTE_H

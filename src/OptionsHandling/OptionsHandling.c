@@ -44,7 +44,7 @@ struct user_options* handleOptions(int argc, char **argv)
                                 exit(1);
                         }else {
                                 printf("%s%lu\n","stringSizeBlock set to :",num);
-                                options->sizeSizeBlock=num;
+                                options->stringBlockSize=num;
                         }
                 }
 
@@ -78,11 +78,11 @@ struct user_options* handleOptions(int argc, char **argv)
                 printf("No hash algorithm provided. Assuming MD5\n");
                 options->hashAlgorithm="MD5";
         }
-        if (options->sizeSizeBlock == NULL){
+        if (options->stringBlockSize == (size_t) NULL){
                 printf("No string size block provided. Defaulting to 100\n");
-                options->sizeSizeBlock=100;
+                options->stringBlockSize=100;
         }
-        if (options->threadsToUse == NULL){
+        if (options->threadsToUse ==(size_t) NULL){
                 printf("No amount of threads to use specified. Defaulting to all threads on your CPU.\n");
         }
         if (options->dictionaryPath == NULL){

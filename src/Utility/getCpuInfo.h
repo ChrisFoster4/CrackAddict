@@ -15,4 +15,4 @@
 #endif
 
 int getThreadCount(void);
-#endif //MD5_GETCPUINFO_H
+#endif				//MD5_GETCPUINFO_H

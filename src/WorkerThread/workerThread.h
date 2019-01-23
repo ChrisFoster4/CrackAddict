@@ -9,13 +9,14 @@
 #include <stdbool.h>
 #include "../md5/md5.h"
 
-typedef struct workerThreadArgs{
-    int* id;
-    int stringBlockSize;
-    char** strArr;
-    bool* hashFound;
-    char* hashToFind;
-}workerThreadArgs;
+typedef struct workerThreadArgs {
+	int *id;
+	size_t stringBlockSize;
+	char **strArr;
+	bool *hashFound;
+	char *hashToFind;
+	char* returnLocation;
+} workerThreadArgs;
 
-void work(struct workerThreadArgs* args);
+void work(struct workerThreadArgs *args);
 #endif

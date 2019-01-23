@@ -9,15 +9,15 @@
 #include <sys/sysinfo.h>
 
 //TODO FreeBSD version
-int getThreadCount(){
+int getThreadCount(void)
+{
+	int threadCount = get_nprocs();
 
-    int threadCount = get_nprocs();
+	printf("This system has %d processors configured and "
+	       "%d processors available.\n",
+	       get_nprocs_conf(), get_nprocs());
 
-    printf("This system has %d processors configured and "
-           "%d processors available.\n",
-           get_nprocs_conf(), get_nprocs());
-
-    return threadCount;
+	return threadCount;
 }
 #endif
 

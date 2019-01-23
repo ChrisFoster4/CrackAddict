@@ -14,7 +14,7 @@
 typedef struct user_options {
     char* hashToCrack;
     char* hashAlgorithm;
-    size_t sizeSizeBlock;
+    size_t stringBlockSize;
     size_t threadsToUse;
     char* dictionaryPath;
 } user_options;
