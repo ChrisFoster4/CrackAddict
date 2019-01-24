@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <sys/sysinfo.h>
 
-//TODO FreeBSD version
 int getThreadCount(void)
 {
 	int threadCount = get_nprocs();
@@ -21,6 +20,24 @@ int getThreadCount(void)
 }
 #endif
 
-#if __freebsd__
-//TODO FreeBSD version
+#if __FreeBSD__
+
+int getThreadCount(void){
+        int mid[4];
+        int coreCount;
+
+        size_t len = sizeof(coreCount);
+
+        mid[0]=CTL_HW;
+        mid[1]=HW_NCPU;
+
+        sysctl(mid,2,&coreCount,&len,NULL,0);
+        if (coreCount < 1){
+        	mid[1]=HW_NCPU;
+		sysctl(mid,2,&coreCount,&len,NULL,0);
+        	if (coreCount < 1) coreCount=1;
+        }
+        printf("%s%d%s\n","This system has",coreCount,"  processors avaliable\n");
+        return coreCount;
+}
 #endif

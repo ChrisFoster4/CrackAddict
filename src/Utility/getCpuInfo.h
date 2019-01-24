@@ -4,15 +4,19 @@
 
 #ifndef MD5_GETCPUINFO_H
 #define MD5_GETCPUINFO_H
-#include <stdio.h>
 
 #if __linux__
+#include <stdio.h>
 #include <sys/sysinfo.h>
-#endif
-
-#if __freebsd__
-//TODO include
-#endif
 
 int getThreadCount(void);
+#endif
+
+#if __FreeBSD__
+#include <stdio.h>
+#include <sys/sysctl.h>
+
+int getThreadCount(void);
+#endif
+
 #endif				//MD5_GETCPUINFO_H
