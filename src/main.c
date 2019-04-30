@@ -4,11 +4,6 @@
 
 #include "main.h"
 
-#include "SHA1/SHA1.h"
-
-
-#include "OptionsHandling/OptionsHandling.h"
-
 int main(int argc, char **argv)
 {
 	printf("CrackAddict\n");

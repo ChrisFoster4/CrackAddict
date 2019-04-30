@@ -5,14 +5,12 @@
 #ifndef MD5_MAIN_H
 #define MD5_MAIN_H
 #include <stdbool.h>
-//#include <unistd.h>
-//#include <time.h>
-//#include <pthread.h>
 
 #include "StringGeneration/stringGen.h"
 #include "md5/md5.h"
 #include "Utility/getCpuInfo.h"
 #include "WorkerThread/workerThread.h"
+#include "OptionsHandling/OptionsHandling.h"
 
 #include "Utility/getCpuInfo.h"
 #include "Dictionary/FileParsing.h"

@@ -44,6 +44,7 @@ char* parseDictionary(struct user_options* options,bool* hashFound)
 			return word->word;
 		}
 		currentLine++;
+		free(word);
 	}
 	fclose(fp);
 	printf("Hash not found in dictionary\n");
