@@ -5,7 +5,15 @@
 #include "OptionsHandling.h"
 
 void print_help(void){
-        printf("help message\n");
+	printf("Usage:\n");
+    printf("Provide one argument which is the hash to crack i.e.\n\"./MD5Cracker 5d41402abc4b2a76b9719d911017c592\"\n");
+    printf("Or utilise the following options:\n");
+    printf("-h The MD5 Hash to crack\n");
+    printf("-a : The hash algorithm to use. Currently redundant and ignored as only MD5 is supported\n");
+    printf("-s,--size-string : The buffer size of strings for each thread.Performance only option should be left blank usually.\n");
+    printf("-t : thread count. Force a specific thread count. If no thread count is provided the program will use every thread on your CPU. The program will always use atleast 2 threads.\n");
+    printf("For instance to crack the md5 hash 5d41402abc4b2a76b9719d911017c592 with 4 threads and a string size buffer of 500 run\n");
+    printf("./MD5Cracker -h 5d41402abc4b2a76b9719d911017c592 -t 4 -s 500\n");
 }
 
 struct user_options* handleOptions(int argc, char **argv)
