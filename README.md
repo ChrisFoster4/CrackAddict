@@ -1,7 +1,7 @@
 MD5Cracker:
 A multi-threaded MD5 hash cracker
 
-###Compiling
+**Compiling**  
 Currently the program must be build on-top of Linux or FreeBSD with a C11 compiler,cmake and make installed  
 On Ubuntu 18.04 to satisfy these dependencies run
 ```
@@ -13,7 +13,7 @@ cmake .
 make 
 ```
 
-###Running
+**Running**  
 To run the program call it with an MD5 hash.  
 For instance
 ```
@@ -29,7 +29,7 @@ There are additional command line options. To see these run
 ./MD5Cracker --help 
 ```
 
-###Unit tests
+**Unit tests**  
 Run a single test with ./RunTests.sh then the .check file for instance:
 ```
 cd tests
