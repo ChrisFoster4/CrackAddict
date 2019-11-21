@@ -28,7 +28,7 @@ struct user_options* handleOptions(int argc, char **argv)
                 }
 
                 if (strcmp("-h",argv[i]) == 0){
-                        printf("%s%s\n","CrackAddict will attempt to crack: ",argv[i+1]);
+                        printf("%s%s\n","MD5Cracker will attempt to crack: ",argv[i+1]);
                         options->hashToCrack = argv[i+1];
                 }
 

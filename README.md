@@ -1,4 +1,4 @@
-Crack Addict:
+MD5Cracker:
 A multi-threaded MD5 hash cracker
 
 Build with:

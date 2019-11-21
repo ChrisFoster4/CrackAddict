@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv)
 {
-	printf("CrackAddict\n");
+	printf("MD5Cracker\n");
 
 	bool hashFound=false;
 	struct user_options* options = handleOptions(argc,argv);
