@@ -60,7 +60,7 @@ void work(struct workerThreadArgs *args)
 				exit(1);
 			}
 
-			printf("%s%s\n", "Hashing", startOfBlock[i]);
+			printf("%s%s\n", "Hashing: ", startOfBlock[i]);
 			md5String(startOfBlock[i], str);
 
 			if (strcmp(args->hashToFind, str) == 0) {
