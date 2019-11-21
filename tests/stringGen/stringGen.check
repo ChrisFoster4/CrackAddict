@@ -1,6 +1,5 @@
 #include "../src/StringGeneration/stringGen.h"
 #include "../src/md5/md5.h"
-#include "../src/stringGen.h"
 
 #include <stdlib.h>
 #include <stdio.h>
