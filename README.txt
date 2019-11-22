@@ -30,6 +30,13 @@ There are additional command line options. To see these run
 
 
 Unit tests 
+Tests are written with the check library:
+https://libcheck.github.io/check/
+
+To install check on Ubuntu 18.04 Run
+
+sudo apt-get update && sudo apt install -y check
+
 Run a single test with ./RunTests.sh then the .check file for instance:
 
 cd tests
@@ -42,5 +49,3 @@ cd tests
 ./RunTests.sh all
 
 
-Tests are written with the check library:
-https://libcheck.github.io/check/
