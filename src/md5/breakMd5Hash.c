@@ -21,6 +21,10 @@ char* breakMd5Hash(char* hashToCrack,struct user_options* args){
         //Use all threads on the cpu apart from the one thread for the string generation
         unsigned int workerThreadCount =
                 (unsigned int) (getThreadCount()) - 1;
+	
+        //Special case for CPUs with one thread. In this case 1 string generation thread and one cracking thread
+        if (workerThreadCount==0) workerThreadCount =1;
+
         unsigned int arrSize = args->stringBlockSize * workerThreadCount;
 
         //Array to store pointers to string which will be hashed
